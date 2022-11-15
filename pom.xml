@@ -21,6 +21,12 @@
             <artifactId>okhttp</artifactId>
             <version>5.0.0-alpha.10</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20220924</version>
+        </dependency>
     </dependencies>
 
 </project>

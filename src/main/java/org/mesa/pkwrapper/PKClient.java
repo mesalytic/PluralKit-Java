@@ -1,9 +1,9 @@
 package org.mesa.pkwrapper;
 
-import okhttp3.MediaType;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.json.JSONObject;
+import org.mesa.pkwrapper.models.PKSystem;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class PKClient {
         return token;
     }
 
-    public String getSystem(String systemRef) throws IOException {
+    public PKSystem getSystem(String systemRef) throws IOException {
 
         Request request = new Request.Builder()
                 .url("https://api.pluralkit.me/v2/systems/" + systemRef)
@@ -23,7 +23,7 @@ public class PKClient {
                 .build();
 
         try (Response response = httpClient.newCall(request).execute()) {
-            return response.body().string();
+            return new PKSystem(new JSONObject(response.body().string()));
         }
     }
 }
