@@ -16,14 +16,12 @@ public class PKSystem {
         this.json = systemObject;
         this.id = this.json.getString("id");
         this.uuid = this.json.getString("uuid");
-        //TODO: System Privacy
     }
 
     @Override
     public String toString() {
         return "PKSystem{" +
-                "json=" + json +
-                ", id='" + id + '\'' +
+                "id='" + id + '\'' +
                 ", uuid='" + uuid + '\'' +
                 '}';
     }
@@ -74,5 +72,9 @@ public class PKSystem {
 
     public String getCreated() {
         return Utils.coalesce(this.json.getString("created"), null);
+    }
+
+    public PKSystemPrivacy getPrivacy() {
+        return new PKSystemPrivacy(Utils.coalesce(this.json.getJSONObject("privacy"), null));
     }
 }
