@@ -14,7 +14,7 @@ public record PKClientBuilder() {
     private static final PKClient client = new PKClient();
 
     static String token;
-    static OkHttpClient httpClient;
+    public static OkHttpClient httpClient;
 
     static final Dispatcher dispatcher = new Dispatcher();
 

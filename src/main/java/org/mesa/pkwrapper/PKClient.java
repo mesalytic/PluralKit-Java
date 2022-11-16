@@ -15,7 +15,7 @@ public class PKClient {
      * Returns the token linked with the {@link PKClientBuilder}
      * @return String
      */
-    public String getToken() {
+    public static String getToken() {
         return token;
     }
 

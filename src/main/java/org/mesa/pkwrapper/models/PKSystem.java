@@ -1,6 +1,7 @@
 package org.mesa.pkwrapper.models;
 
 import org.json.JSONObject;
+import org.mesa.pkwrapper.managers.PKSystemManager;
 import org.mesa.pkwrapper.utils.Utils;
 
 public class PKSystem {
@@ -76,5 +77,9 @@ public class PKSystem {
 
     public PKSystemPrivacy getPrivacy() {
         return new PKSystemPrivacy(Utils.coalesce(this.json.getJSONObject("privacy"), null));
+    }
+
+    public PKSystemManager getManager() {
+        return new PKSystemManager(getId());
     }
 }
