@@ -18,12 +18,21 @@ public record PKClientBuilder() {
 
     static final Dispatcher dispatcher = new Dispatcher();
 
+    /**
+     * Used to add the token to the builder.
+     * @param token The token that you obtained via PluralKit.
+     * @return The Builder with the token
+     */
     public PKClientBuilder create(String token) {
         PKClientBuilder.token = token;
 
         return this;
     }
 
+    /**
+     * Builds the {@link PKClient} with the specified token specified.
+     * @return A {@link PKClient} instance.
+     */
     public PKClient build() {
         dispatcher.setMaxRequestsPerHost(25);
 

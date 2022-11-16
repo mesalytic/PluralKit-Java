@@ -3,7 +3,7 @@ package org.mesa.pkwrapper.utils;
 public class Utils {
     /**
      * Nullish coalescent operator equivalent [ ?? ]
-     * If <b>one</b> is null, it will return <b>two</b>, and vice versa
+     * If <b>object</b> is null, it will return <b>defaultObject</b>
      * @param object
      * @param defaultObject
      * @return

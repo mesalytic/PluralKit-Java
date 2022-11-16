@@ -8,6 +8,10 @@ public class PKSystem {
     protected final String id;
     protected final String uuid;
 
+    /**
+     * Used to instantiate a {@link PKSystem} object.
+     * @param systemObject The JSON obtained via HTTP request
+     */
     public PKSystem(JSONObject systemObject) {
         this.json = systemObject;
         this.id = this.json.getString("id");
@@ -15,6 +19,19 @@ public class PKSystem {
         //TODO: System Privacy
     }
 
+    @Override
+    public String toString() {
+        return "PKSystem{" +
+                "json=" + json +
+                ", id='" + id + '\'' +
+                ", uuid='" + uuid + '\'' +
+                '}';
+    }
+
+    /**
+     * Get the {@link PKSystem} object as a {@link JSONObject}
+     * @return The {@link JSONObject} containing the {@link PKSystem} object
+     */
     public JSONObject getAsJSON() {
         return json;
     }
