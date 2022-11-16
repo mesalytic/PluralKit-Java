@@ -10,8 +10,6 @@ import org.mesa.pkwrapper.exceptions.StringTooLongException;
 import org.mesa.pkwrapper.utils.Utils;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class PKSystemManager {
     protected final String systemRef;
