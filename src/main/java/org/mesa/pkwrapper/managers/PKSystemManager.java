@@ -4,6 +4,7 @@ import okhttp3.*;
 import org.json.JSONObject;
 import org.mesa.pkwrapper.PKClient;
 import org.mesa.pkwrapper.PKClientBuilder;
+import org.mesa.pkwrapper.exceptions.EmptyManagerDataException;
 import org.mesa.pkwrapper.exceptions.InvalidHexColorException;
 import org.mesa.pkwrapper.exceptions.InvalidImageURLException;
 import org.mesa.pkwrapper.exceptions.StringTooLongException;
@@ -129,8 +130,11 @@ public class PKSystemManager {
      * Sends all the updated value to the API.
      * @return A new {@link PKSystem} with the new updated values.
      * @throws IOException
+     * @throws EmptyManagerDataException If the data sent to the API is empty
      */
-    public PKSystem update() throws IOException {
+    public PKSystem update() throws IOException, EmptyManagerDataException {
+        if (this.json.isEmpty()) throw new EmptyManagerDataException("Cannot call update() with no updated value");
+
         OkHttpClient client = PKClientBuilder.httpClient;
         RequestBody body = RequestBody.create(this.json.toString(), JSON);
 
