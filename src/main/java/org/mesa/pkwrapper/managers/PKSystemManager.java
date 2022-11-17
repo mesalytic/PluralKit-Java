@@ -7,6 +7,7 @@ import org.mesa.pkwrapper.PKClientBuilder;
 import org.mesa.pkwrapper.exceptions.InvalidHexColorException;
 import org.mesa.pkwrapper.exceptions.InvalidImageURLException;
 import org.mesa.pkwrapper.exceptions.StringTooLongException;
+import org.mesa.pkwrapper.models.PKSystem;
 import org.mesa.pkwrapper.utils.Utils;
 
 import java.io.IOException;
@@ -80,7 +81,7 @@ public class PKSystemManager {
         return this;
     }
 
-    public String update() throws IOException {
+    public PKSystem update() throws IOException {
         OkHttpClient client = PKClientBuilder.httpClient;
         RequestBody body = RequestBody.create(this.json.toString(), JSON);
 
@@ -92,6 +93,6 @@ public class PKSystemManager {
 
         Response response = client.newCall(request).execute();
 
-        return response.body().string();
+        return new PKSystem(new JSONObject(response.body().string()));
     }
 }
