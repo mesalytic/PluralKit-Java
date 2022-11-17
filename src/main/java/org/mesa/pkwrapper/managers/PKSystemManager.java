@@ -22,6 +22,12 @@ public class PKSystemManager {
         this.json = new JSONObject();
     }
 
+    /**
+     * Sets the name in the {@link PKSystemManager} instance.
+     * @param name New name of the {@link PKSystem}
+     * @return The same instance of {@link PKSystemManager} with the saved value.
+     * @throws StringTooLongException If the name is over the 100 characters limit
+     */
     public PKSystemManager setName(String name) throws StringTooLongException {
         if (name.length() > 100) throw new StringTooLongException("String name is over the 100 character limit");
 
@@ -30,6 +36,12 @@ public class PKSystemManager {
         return this;
     }
 
+    /**
+     * Sets the description in the {@link PKSystemManager} instance.
+     * @param description New description of the {@link PKSystem}
+     * @return The same instance of {@link PKSystemManager} with the saved value.
+     * @throws StringTooLongException If the description is over the 1000 characters limit
+     */
     public PKSystemManager setDescription(String description) throws StringTooLongException {
         if (description.length() > 1000) throw new StringTooLongException("String description is over the 1000 character limit");
 
@@ -38,12 +50,23 @@ public class PKSystemManager {
         return this;
     }
 
+    /**
+     * Sets the tag in the {@link PKSystemManager} instance.
+     * @param tag New tag of the {@link PKSystem}
+     * @return The same instance of {@link PKSystemManager} with the saved value.
+     */
     public PKSystemManager setTag(String tag) {
         this.json.put("tag", tag);
 
         return this;
     }
 
+    /**
+     * Sets the pronouns in the {@link PKSystemManager} instance.
+     * @param pronouns New pronouns of the {@link PKSystem}
+     * @return The same instance of {@link PKSystemManager} with the saved value.
+     * @throws StringTooLongException If the pronouns are over the 100 characters limit
+     */
     public PKSystemManager setPronouns(String pronouns) throws StringTooLongException {
         if (pronouns.length() > 100) throw new StringTooLongException("String pronouns is over the 100 character limit");
 
@@ -52,6 +75,13 @@ public class PKSystemManager {
         return this;
     }
 
+    /**
+     * Sets the Avatar URL in the {@link PKSystemManager} instance.
+     * @param avatarURL The new avatar URL of the {@link PKSystem}
+     * @return The same instance of {@link PKSystemManager} with the saved value.
+     * @throws InvalidImageURLException If the URL is not publicly accessible, or if it's not an image URL
+     * @throws StringTooLongException If the URL is over the 256 characters limit
+     */
     public PKSystemManager setAvatarURL(String avatarURL) throws InvalidImageURLException, StringTooLongException {
         if (!Utils.isValidImageURL(avatarURL)) throw new InvalidImageURLException("The specified URL is not a valid avatar URL");
         if (avatarURL.length() > 256) throw new StringTooLongException("String avatarURL is over the 256 character limit");
@@ -61,6 +91,13 @@ public class PKSystemManager {
         return this;
     }
 
+    /**
+     * Sets the banner in the {@link PKSystemManager} instance.
+     * @param bannerURL The new banner of the {@link PKSystem}
+     * @return The same instance of {@link PKSystemManager} with the saved value.
+     * @throws InvalidImageURLException If the URL is not publicly accessible, or if it's not an image URL
+     * @throws StringTooLongException If the URL is over the 256 characters limit
+     */
     public PKSystemManager setBanner(String bannerURL) throws InvalidImageURLException, StringTooLongException {
         if (!Utils.isValidImageURL(bannerURL)) throw new InvalidImageURLException("The specified URL is not a valid banner URL");
         if (bannerURL.length() > 256) throw new StringTooLongException("String bannerURL is over the 256 character limit");
@@ -70,6 +107,13 @@ public class PKSystemManager {
         return this;
     }
 
+    /**
+     * Sets the color in the {@link PKSystemManager} instance.
+     * @param hexCode The new color of the {@link PKSystem}
+     * @return The same instance of {@link PKSystemManager} with the saved value.
+     * @throws StringTooLongException If the hex-code is over the 6 characters limit
+     * @throws InvalidHexColorException If the hex-code starts with an <b>#</b> or if the hex code is not within <b>000000</b> - <b>FFFFFF</b>
+     */
     public PKSystemManager setColor(String hexCode) throws StringTooLongException, InvalidHexColorException {
         if (hexCode.startsWith("#")) hexCode = hexCode.substring(1);
 
@@ -81,6 +125,11 @@ public class PKSystemManager {
         return this;
     }
 
+    /**
+     * Sends all the updated value to the API.
+     * @return A new {@link PKSystem} with the new updated values.
+     * @throws IOException
+     */
     public PKSystem update() throws IOException {
         OkHttpClient client = PKClientBuilder.httpClient;
         RequestBody body = RequestBody.create(this.json.toString(), JSON);
