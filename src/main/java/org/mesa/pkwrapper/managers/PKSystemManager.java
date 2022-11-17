@@ -9,13 +9,13 @@ import org.mesa.pkwrapper.exceptions.InvalidHexColorException;
 import org.mesa.pkwrapper.exceptions.InvalidImageURLException;
 import org.mesa.pkwrapper.exceptions.StringTooLongException;
 import org.mesa.pkwrapper.models.PKSystem;
+import org.mesa.pkwrapper.utils.Constants;
 import org.mesa.pkwrapper.utils.Utils;
 
 import java.io.IOException;
 
 public class PKSystemManager {
     protected final String systemRef;
-    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     JSONObject json;
 
     public PKSystemManager(String systemRef) {
@@ -136,10 +136,10 @@ public class PKSystemManager {
         if (this.json.isEmpty()) throw new EmptyManagerDataException("Cannot call update() with no updated value");
 
         OkHttpClient client = PKClientBuilder.httpClient;
-        RequestBody body = RequestBody.create(this.json.toString(), JSON);
+        RequestBody body = RequestBody.create(this.json.toString(), Constants.JSON);
 
         Request request = new Request.Builder()
-                .url("https://api.pluralkit.me/v2/systems/" + systemRef)
+                .url(Constants.BASE_URL + "/systems/" + systemRef)
                 .patch(body)
                 .header("Authorization", PKClient.getToken())
                 .build();

@@ -6,12 +6,12 @@ import org.mesa.pkwrapper.PKClient;
 import org.mesa.pkwrapper.PKClientBuilder;
 import org.mesa.pkwrapper.enums.SystemPrivacyState;
 import org.mesa.pkwrapper.models.PKSystemPrivacy;
+import org.mesa.pkwrapper.utils.Constants;
 
 import java.io.IOException;
 
 public class PKSystemPrivacyManager {
     protected final String systemRef;
-    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     JSONObject json;
 
     public PKSystemPrivacyManager(String systemRef) {
@@ -60,10 +60,10 @@ public class PKSystemPrivacyManager {
         finalJson.put("privacy", this.json);
 
         OkHttpClient client = PKClientBuilder.httpClient;
-        RequestBody body = RequestBody.create(finalJson.toString(), JSON);
+        RequestBody body = RequestBody.create(finalJson.toString(), Constants.JSON);
 
         Request request = new Request.Builder()
-                .url("https://api.pluralkit.me/v2/systems/" + systemRef)
+                .url(Constants.BASE_URL + "/systems/" + systemRef)
                 .patch(body)
                 .header("Authorization", PKClient.getToken())
                 .build();
