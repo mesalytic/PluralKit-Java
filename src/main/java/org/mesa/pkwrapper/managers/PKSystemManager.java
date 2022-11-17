@@ -115,7 +115,7 @@ public class PKSystemManager {
      * @throws InvalidHexColorException If the hex-code starts with an <b>#</b> or if the hex code is not within <b>000000</b> - <b>FFFFFF</b>
      */
     public PKSystemManager setColor(String hexCode) throws StringTooLongException, InvalidHexColorException {
-        if (hexCode.startsWith("#")) hexCode = hexCode.substring(1);
+        if (hexCode.startsWith("#")) throw new InvalidHexColorException("String hexCode must not start with an #");
 
         if (hexCode.length() > 6) throw new StringTooLongException("String hexCode is over the 6 character limit");
         if (!Utils.isValidHexColor(hexCode)) throw new InvalidHexColorException("String hexCode is not a valid hexadecimal color code.");
