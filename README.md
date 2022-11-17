@@ -3,6 +3,11 @@
 A PluralKit API Wrapper for Java
 
 ## Roadmap
+
+### Accessiblity
+- [x] Access with Token Authentication
+- [ ] Access without Token Authentication (for certain endpoints)
+
 ### Systems
 - [x] Get System
 - [x] Update System
