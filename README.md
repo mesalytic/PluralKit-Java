@@ -11,7 +11,7 @@ A PluralKit API Wrapper for Java
 ### Systems
 - [x] Get System
 - [x] Update System
-- [ ] Get System Settings
+- [x] Get System Settings
 - [ ] Update System Settings
 - [ ] Get System Guild Settings
 - [ ] Update System Guild Settings

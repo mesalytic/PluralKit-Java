@@ -1,8 +1,16 @@
 package org.mesa.pkwrapper.models;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.json.JSONObject;
+import org.mesa.pkwrapper.PKClient;
+import org.mesa.pkwrapper.PKClientBuilder;
 import org.mesa.pkwrapper.managers.PKSystemManager;
+import org.mesa.pkwrapper.utils.Constants;
 import org.mesa.pkwrapper.utils.Utils;
+
+import java.io.IOException;
 
 public class PKSystem {
     protected final JSONObject json;
@@ -81,5 +89,20 @@ public class PKSystem {
 
     public PKSystemManager getManager() {
         return new PKSystemManager(getId());
+    }
+
+    public PKSystemSettings getSettings() throws IOException {
+        OkHttpClient client = PKClientBuilder.httpClient;
+
+        Request request = new Request.Builder()
+                .url(Constants.BASE_URL + "/systems/" + getId() + "/settings")
+                .get()
+                .header("Authorization", PKClient.getToken())
+                .build();
+
+        Response response = client.newCall(request).execute();
+        System.out.println(response.toString());
+
+        return new PKSystemSettings(new JSONObject(response.body().string()));
     }
 }
