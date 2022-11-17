@@ -2,6 +2,54 @@
 
 A PluralKit API Wrapper for Java
 
+## Roadmap
+### Systems
+- [x] Get System
+- [x] Update System
+- [ ] Get System Settings
+- [ ] Update System Settings
+- [ ] Get System Guild Settings
+- [ ] Update System Guild Settings
+- [ ] Get System Autoproxy Settings
+- [ ] Update System Autoproxy Settings
+
+### Members
+- [ ] Get System Members
+- [ ] Create Member
+- [ ] Get Member
+- [ ] Update Member
+- [ ] Delete Member
+- [ ] Get Member Groups
+- [ ] Add Member to Groups
+- [ ] Remove Member from Groups
+- [ ] Overwrite Member Groups
+- [ ] Get Member Guild Settings
+- [ ] Update Member Guild Settings
+
+### Groups
+- [ ] Get System Groups
+- [ ] Create Group
+- [ ] Get Group
+- [ ] Update Group
+- [ ] Delete Group
+- [ ] Get Group Members
+- [ ] Add Members to Group
+- [ ] Remove Member from Group
+- [ ] Overwrite Group Members
+
+### Switches
+
+- [ ] Get System Switches
+- [ ] Get Current System Fronters
+- [ ] Create Switch
+- [ ] Get Switch
+- [ ] Update Switch
+- [ ] Update Switch Members
+- [ ] Delete Switch
+
+### Misc
+- [ ] Get Proxied Message Information
+
 ## Installing
 Soon
 
