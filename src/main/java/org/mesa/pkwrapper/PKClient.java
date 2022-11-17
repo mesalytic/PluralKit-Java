@@ -4,6 +4,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONObject;
 import org.mesa.pkwrapper.models.PKSystem;
+import org.mesa.pkwrapper.utils.Constants;
 
 import java.io.IOException;
 
@@ -30,7 +31,7 @@ public class PKClient {
     public PKSystem getSystem(String systemRef) throws IOException {
 
         Request request = new Request.Builder()
-                .url("https://api.pluralkit.me/v2/systems/" + systemRef)
+                .url(Constants.BASE_URL + "/systems/" + systemRef)
                 .header("Authorization", getToken())
                 .build();
 
