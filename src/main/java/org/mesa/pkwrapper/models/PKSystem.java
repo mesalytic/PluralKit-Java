@@ -76,7 +76,7 @@ public class PKSystem {
     }
 
     public PKSystemPrivacy getPrivacy() {
-        return new PKSystemPrivacy(Utils.coalesce(this.json.getJSONObject("privacy"), null));
+        return new PKSystemPrivacy(Utils.coalesce(this.json.getJSONObject("privacy"), null), getId());
     }
 
     public PKSystemManager getManager() {

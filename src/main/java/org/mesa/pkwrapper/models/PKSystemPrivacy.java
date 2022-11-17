@@ -1,11 +1,14 @@
 package org.mesa.pkwrapper.models;
 
 import org.json.JSONObject;
+import org.mesa.pkwrapper.managers.PKSystemPrivacyManager;
 
 public class PKSystemPrivacy {
     protected final JSONObject json;
+    protected final String id;
 
-    public PKSystemPrivacy(JSONObject systemPrivacyObject) {
+    public PKSystemPrivacy(JSONObject systemPrivacyObject, String id) {
+        this.id = id;
         this.json = systemPrivacyObject;
     }
 
@@ -35,5 +38,9 @@ public class PKSystemPrivacy {
 
     public String getFrontHistoryPrivacy() {
         return this.json.getString("front_history_privacy");
+    }
+
+    public PKSystemPrivacyManager getPrivacyManager() {
+        return new PKSystemPrivacyManager(id);
     }
 }
