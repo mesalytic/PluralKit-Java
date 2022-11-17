@@ -85,8 +85,8 @@ public class Main {
 
         // Get System specific information
         
-        system.getAsJSON(); // returns a JSONObject
-        system.getDescription(); // returns the description as a String
+        JSONObject json = system.getAsJSON(); // returns a JSONObject
+        String description = system.getDescription(); // returns the description as a String
         
         // Edit the System
         PKSystemManager manager = system.getManager();
