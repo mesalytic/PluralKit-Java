@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import org.mesa.pkwrapper.PKClient;
 import org.mesa.pkwrapper.PKClientBuilder;
 import org.mesa.pkwrapper.managers.PKSystemManager;
+import org.mesa.pkwrapper.utils.APIRequest;
 import org.mesa.pkwrapper.utils.Constants;
 import org.mesa.pkwrapper.utils.Utils;
 
@@ -92,17 +93,8 @@ public class PKSystem {
     }
 
     public PKSystemSettings getSettings() throws IOException {
-        OkHttpClient client = PKClientBuilder.httpClient;
+        JSONObject systemSettingsObject = APIRequest.get(Constants.BASE_URL + "/systems/" + getId() + "/settings");
 
-        Request request = new Request.Builder()
-                .url(Constants.BASE_URL + "/systems/" + getId() + "/settings")
-                .get()
-                .header("Authorization", PKClient.getToken())
-                .build();
-
-        Response response = client.newCall(request).execute();
-        System.out.println(response.toString());
-
-        return new PKSystemSettings(new JSONObject(response.body().string()));
+        return new PKSystemSettings(systemSettingsObject, getId());
     }
 }

@@ -9,6 +9,7 @@ import org.mesa.pkwrapper.exceptions.InvalidHexColorException;
 import org.mesa.pkwrapper.exceptions.InvalidImageURLException;
 import org.mesa.pkwrapper.exceptions.StringTooLongException;
 import org.mesa.pkwrapper.models.PKSystem;
+import org.mesa.pkwrapper.utils.APIRequest;
 import org.mesa.pkwrapper.utils.Constants;
 import org.mesa.pkwrapper.utils.Utils;
 
@@ -135,17 +136,10 @@ public class PKSystemManager {
     public PKSystem update() throws IOException, EmptyManagerDataException {
         if (this.json.isEmpty()) throw new EmptyManagerDataException("Cannot call update() with no updated value");
 
-        OkHttpClient client = PKClientBuilder.httpClient;
         RequestBody body = RequestBody.create(this.json.toString(), Constants.JSON);
 
-        Request request = new Request.Builder()
-                .url(Constants.BASE_URL + "/systems/" + systemRef)
-                .patch(body)
-                .header("Authorization", PKClient.getToken())
-                .build();
+        JSONObject systemObject = APIRequest.patch(Constants.BASE_URL + "/systems/" + systemRef, body);
 
-        Response response = client.newCall(request).execute();
-
-        return new PKSystem(new JSONObject(response.body().string()));
+        return new PKSystem(systemObject);
     }
 }

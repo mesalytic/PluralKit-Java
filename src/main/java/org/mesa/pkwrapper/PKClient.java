@@ -4,6 +4,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONObject;
 import org.mesa.pkwrapper.models.PKSystem;
+import org.mesa.pkwrapper.utils.APIRequest;
 import org.mesa.pkwrapper.utils.Constants;
 
 import java.io.IOException;
@@ -29,14 +30,8 @@ public class PKClient {
      * @throws IOException
      */
     public PKSystem getSystem(String systemRef) throws IOException {
+        JSONObject systemObject = APIRequest.get(Constants.BASE_URL + "/systems/" + systemRef);
 
-        Request request = new Request.Builder()
-                .url(Constants.BASE_URL + "/systems/" + systemRef)
-                .header("Authorization", getToken())
-                .build();
-
-        try (Response response = httpClient.newCall(request).execute()) {
-            return new PKSystem(new JSONObject(response.body().string()));
-        }
+        return new PKSystem(systemObject);
     }
 }
