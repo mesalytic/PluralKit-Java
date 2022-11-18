@@ -12,7 +12,7 @@ A PluralKit API Wrapper for Java
 - [x] Get System
 - [x] Update System
 - [x] Get System Settings
-- [ ] Update System Settings
+- [x] Update System Settings
 - [ ] Get System Guild Settings
 - [ ] Update System Guild Settings
 - [ ] Get System Autoproxy Settings
