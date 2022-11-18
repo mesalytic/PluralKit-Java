@@ -1,13 +1,16 @@
 package org.mesa.pkwrapper.models;
 
 import org.json.JSONObject;
+import org.mesa.pkwrapper.managers.PKSystemSettingsManager;
 import org.mesa.pkwrapper.utils.Utils;
 
 public class PKSystemSettings {
     protected final JSONObject json;
+    protected final String id;
 
-    public PKSystemSettings(JSONObject json) {
+    public PKSystemSettings(JSONObject json, String id) {
         this.json = json;
+        this.id = id;
     }
 
     public JSONObject getAsJSON() {
@@ -84,5 +87,9 @@ public class PKSystemSettings {
      */
     public int getGroupLimit() {
         return this.json.getInt("group_limit");
+    }
+
+    public PKSystemSettingsManager getManager() {
+        return new PKSystemSettingsManager(id);
     }
 }

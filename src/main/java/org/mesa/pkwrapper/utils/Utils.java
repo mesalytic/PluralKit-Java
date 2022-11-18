@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Set;
+import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,5 +46,9 @@ public class Utils {
         Matcher matcher = pattern.matcher(hexColor);
 
         return matcher.matches();
+    }
+
+    public static boolean validTimeZone(String timeZone) {
+        return Set.of(TimeZone.getAvailableIDs()).contains(timeZone);
     }
 }
