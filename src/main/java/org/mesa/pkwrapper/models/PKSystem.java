@@ -6,6 +6,7 @@ import okhttp3.Response;
 import org.json.JSONObject;
 import org.mesa.pkwrapper.PKClient;
 import org.mesa.pkwrapper.PKClientBuilder;
+import org.mesa.pkwrapper.exceptions.NoGuildSettingsException;
 import org.mesa.pkwrapper.managers.PKSystemManager;
 import org.mesa.pkwrapper.utils.APIRequest;
 import org.mesa.pkwrapper.utils.Constants;
@@ -96,5 +97,19 @@ public class PKSystem {
         JSONObject systemSettingsObject = APIRequest.get(Constants.BASE_URL + "/systems/" + getId() + "/settings");
 
         return new PKSystemSettings(systemSettingsObject, getId());
+    }
+
+    /**
+     * <b>You must have already updated per-guild settings for your system in the target Guild before being able to get them via the API.</b>
+     * @param guildID
+     * @return {@link PKSystemGuildSettings}
+     * @throws IOException
+     */
+    public PKSystemGuildSettings getGuildSettings(String guildID) throws IOException, NoGuildSettingsException {
+        JSONObject systemGuildSettingsObject = APIRequest.get(Constants.BASE_URL + "/systems/@me/guilds/" + guildID);
+
+        if (systemGuildSettingsObject.has("message")) throw new NoGuildSettingsException("You must first update per-guild settings for the System in the server.");
+
+        return new PKSystemGuildSettings(systemGuildSettingsObject, getId(), guildID);
     }
 }
