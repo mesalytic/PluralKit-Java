@@ -3,7 +3,9 @@ package org.mesa.pkwrapper;
 import okhttp3.ConnectionPool;
 import okhttp3.Dispatcher;
 import okhttp3.OkHttpClient;
+import org.mesa.pkwrapper.exceptions.InvalidTokenException;
 import org.mesa.pkwrapper.interceptors.RateLimitInterceptor;
+import org.mesa.pkwrapper.utils.Checks;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,7 +35,8 @@ public record PKClientBuilder() {
      * Builds the {@link PKClient} with the specified token specified.
      * @return A {@link PKClient} instance.
      */
-    public PKClient build() {
+    public PKClient build() throws InvalidTokenException {
+        Checks.token(token);
         dispatcher.setMaxRequestsPerHost(25);
 
         final ConnectionPool connectionPool = new ConnectionPool(5, 5, TimeUnit.SECONDS);
