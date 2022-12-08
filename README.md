@@ -5,8 +5,8 @@ A PluralKit API Wrapper for Java
 ## Roadmap
 
 ## Stability
-- [ ] Token Verification before Client Initialization
-- [ ] Create Error Handling Class
+- [x] Token Verification before Client Initialization
+- [ ] Create Error Handling Class (API Wise)
 
 ### Accessiblity
 - [x] Access with Token Authentication
