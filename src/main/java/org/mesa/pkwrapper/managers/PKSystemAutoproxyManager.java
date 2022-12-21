@@ -4,14 +4,13 @@ import okhttp3.RequestBody;
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
 import org.mesa.pkwrapper.enums.AutoproxyMode;
-import org.mesa.pkwrapper.enums.SystemPrivacyState;
 import org.mesa.pkwrapper.exceptions.EmptyManagerDataException;
 import org.mesa.pkwrapper.models.PKSystemAPSettings;
-import org.mesa.pkwrapper.models.PKSystemGuildSettings;
 import org.mesa.pkwrapper.utils.APIRequest;
 import org.mesa.pkwrapper.utils.Constants;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class PKSystemAutoproxyManager {
     protected final String id;
@@ -31,13 +30,12 @@ public class PKSystemAutoproxyManager {
     }
 
     /**
-     *
-     * @param memberID Must be <code>null</code> if the Autoproxy Mode is set to AutoproxyMode.FRONT
-     * @return
+     * Sets a member for the autoproxy in the server.
+     * @param memberID Must be <code>null</code> if the Autoproxy Mode is set to {@link AutoproxyMode}.FRONT
+     * @return The Manager with saved values.
      */
     public PKSystemAutoproxyManager setMember(@Nullable String memberID) {
-        if (memberID == null) this.json.put("autoproxy_member", JSONObject.NULL);
-        else this.json.put("autoproxy_member", memberID);
+        this.json.put("autoproxy_member", Objects.requireNonNullElse(memberID, JSONObject.NULL));
 
         return this;
     }

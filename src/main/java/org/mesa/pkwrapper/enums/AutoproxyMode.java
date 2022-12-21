@@ -6,9 +6,9 @@ public enum AutoproxyMode {
     LATCH("latch"),
     MEMBER("member");
 
-    private String state;
+    private final String state;
 
-    private AutoproxyMode(String state) {
+    AutoproxyMode(String state) {
         this.state = state;
     }
 

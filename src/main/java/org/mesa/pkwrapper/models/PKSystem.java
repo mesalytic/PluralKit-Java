@@ -1,11 +1,7 @@
 package org.mesa.pkwrapper.models;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import org.json.JSONObject;
 import org.mesa.pkwrapper.PKClient;
-import org.mesa.pkwrapper.PKClientBuilder;
 import org.mesa.pkwrapper.exceptions.NoGuildSettingsException;
 import org.mesa.pkwrapper.exceptions.NotAuthorizedException;
 import org.mesa.pkwrapper.managers.PKSystemManager;
@@ -107,9 +103,11 @@ public class PKSystem {
 
     /**
      * <b>You must have already updated per-guild settings for your system in the target Guild before being able to get them via the API.</b>
-     * @param guildID
+     * @param guildID The ID of the guild you want to see the settings from.
      * @return {@link PKSystemGuildSettings}
-     * @throws IOException
+     * @throws IOException Thrown by the Http Client if any errors occurred.
+     * @throws NoGuildSettingsException Thrown if no Guild Settings have been specified using the Discord bot.
+     * @throws NotAuthorizedException Thrown if there is no token included in the {@link org.mesa.pkwrapper.PKClientBuilder}.
      */
     public PKSystemGuildSettings getGuildSettings(String guildID) throws IOException, NoGuildSettingsException, NotAuthorizedException {
         if (PKClient.getToken() == null) throw new NotAuthorizedException("You must specify a token in the PKClientBuilder instance.");
