@@ -13,6 +13,11 @@ import static org.mesa.pkwrapper.PKClientBuilder.httpClient;
 import static org.mesa.pkwrapper.PKClientBuilder.token;
 
 public class PKClient {
+    static String token;
+    public PKClient(String token) {
+        PKClient.token = token;
+    }
+
     /**
      * Returns the token linked with the {@link PKClientBuilder}
      * @return String

@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import org.mesa.pkwrapper.PKClient;
 import org.mesa.pkwrapper.PKClientBuilder;
 import org.mesa.pkwrapper.exceptions.NoGuildSettingsException;
+import org.mesa.pkwrapper.exceptions.NotAuthorizedException;
 import org.mesa.pkwrapper.managers.PKSystemManager;
 import org.mesa.pkwrapper.utils.APIRequest;
 import org.mesa.pkwrapper.utils.Constants;
@@ -86,14 +87,19 @@ public class PKSystem {
     }
 
     public PKSystemPrivacy getPrivacy() {
+        // needs auth ?
         return new PKSystemPrivacy(Utils.coalesce(this.json.getJSONObject("privacy"), null), getId());
     }
 
-    public PKSystemManager getManager() {
+    public PKSystemManager getManager() throws NotAuthorizedException {
+        if (PKClient.getToken() == null) throw new NotAuthorizedException("You must specify a token in the PKClientBuilder instance.");
+
         return new PKSystemManager(getId());
     }
 
-    public PKSystemSettings getSettings() throws IOException {
+    public PKSystemSettings getSettings() throws IOException, NotAuthorizedException {
+        if (PKClient.getToken() == null) throw new NotAuthorizedException("You must specify a token in the PKClientBuilder instance.");
+
         JSONObject systemSettingsObject = APIRequest.get(Constants.BASE_URL + "/systems/" + getId() + "/settings");
 
         return new PKSystemSettings(systemSettingsObject, getId());
@@ -105,7 +111,9 @@ public class PKSystem {
      * @return {@link PKSystemGuildSettings}
      * @throws IOException
      */
-    public PKSystemGuildSettings getGuildSettings(String guildID) throws IOException, NoGuildSettingsException {
+    public PKSystemGuildSettings getGuildSettings(String guildID) throws IOException, NoGuildSettingsException, NotAuthorizedException {
+        if (PKClient.getToken() == null) throw new NotAuthorizedException("You must specify a token in the PKClientBuilder instance.");
+
         JSONObject systemGuildSettingsObject = APIRequest.get(Constants.BASE_URL + "/systems/@me/guilds/" + guildID);
 
         if (systemGuildSettingsObject.has("message")) throw new NoGuildSettingsException("You must first update per-guild settings for the System in the server.");
