@@ -120,4 +120,12 @@ public class PKSystem {
 
         return new PKSystemGuildSettings(systemGuildSettingsObject, getId(), guildID);
     }
+
+    public PKSystemAPSettings getAutoproxySettings(String guildID) throws NotAuthorizedException, IOException {
+        if (PKClient.getToken() == null) throw new NotAuthorizedException("You must specify a token in the PKClientBuilder instance.");
+
+        JSONObject systemAutoproxyObject = APIRequest.get(Constants.BASE_URL + "/systems/@me/autoproxy?guild_id=" + guildID);
+
+        return new PKSystemAPSettings(systemAutoproxyObject, getId(), guildID);
+    }
 }

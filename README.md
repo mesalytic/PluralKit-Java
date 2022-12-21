@@ -10,7 +10,7 @@ A PluralKit API Wrapper for Java
 
 ### Accessiblity
 - [x] Access with Token Authentication
-- [ ] Access without Token Authentication (for certain endpoints)
+- [x] Access without Token Authentication (for certain endpoints)
 
 ### Systems
 - [x] Get System
@@ -19,8 +19,8 @@ A PluralKit API Wrapper for Java
 - [x] Update System Settings
 - [x] Get System Guild Settings
 - [x] Update System Guild Settings
-- [ ] Get System Autoproxy Settings
-- [ ] Update System Autoproxy Settings
+- [x] Get System Autoproxy Settings
+- [x] Update System Autoproxy Settings
 
 ### Members
 - [ ] Get System Members
